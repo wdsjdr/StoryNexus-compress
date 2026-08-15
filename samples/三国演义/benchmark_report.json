@@ -1,8 +1,8 @@
 {
-  "source": "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\三国演义\\三国演义.txt",
-  "generated_at": "2026-08-15 23:32:46",
+  "source": "samples\\三国演义\\三国演义.txt",
+  "generated_at": "2026-08-16 00:53:04",
   "skill": "default",
-  "fact_profile": "cultivation",
+  "fact_profile": "generic",
   "stats": {
     "total_chars": 600586,
     "chars_no_space": 591301,
@@ -17,7 +17,7 @@
     "chapters_with_drop": 0,
     "chapters_over_budget_alone": [],
     "total_swa_tokens": 2478316,
-    "avg_ms": 1.92,
+    "avg_ms": 1.55,
     "drops": []
   },
   "tier_b_simulation": {
@@ -27,17 +27,17 @@
     "avg_swa_per_chapter_15k": 20653
   },
   "csa": {
-    "total_facts": 133,
-    "total_csa_tokens": 11410,
-    "avg_ms": 332.95,
-    "sentence_recall_hits": 360,
+    "total_facts": 689,
+    "total_csa_tokens": 28067,
+    "avg_ms": 98.75,
+    "sentence_recall_hits": 105,
     "foreshadow_injections": 0,
     "hot_zone_chapters": 50
   },
   "fact_quality": {
-    "entities": 126,
+    "entities": 124,
     "motifs": [],
-    "facts": 133,
+    "facts": 689,
     "key_entities": [
       "刘备",
       "曹操",
@@ -53,7 +53,7 @@
       "card_names": [],
       "item_names": []
     },
-    "note": "profile=cultivation；实体/motif/卡先验；登场已移除"
+    "note": "profile=generic；实体/motif/卡先验；登场已移除"
   },
   "narrative": {
     "foreshadows": 0,
@@ -95,7 +95,7 @@
     "motif_coverage": [],
     "echo_probe": [],
     "relationship_retention": {
-      "character_pairs": 5177,
+      "character_pairs": 4653,
       "relation_facts": 0
     },
     "foreshadow_reachability": {
@@ -110,9 +110,9 @@
   },
   "llm_facts": null,
   "files": [
-    "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\三国演义\\compressed\\packet_ch001.json",
-    "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\三国演义\\compressed\\packet_ch002.json",
-    "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\三国演义\\compressed\\packet_ch003.json",
-    "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\三国演义\\compressed\\packet_ch120.json"
+    "samples\\三国演义\\compressed\\packet_ch001.json",
+    "samples\\三国演义\\compressed\\packet_ch002.json",
+    "samples\\三国演义\\compressed\\packet_ch003.json",
+    "samples\\三国演义\\compressed\\packet_ch120.json"
   ]
 }

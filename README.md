@@ -16,7 +16,7 @@
 | **SWA** 滑动窗口 | 当前章 + 近 N 章原文，预算内丢最老章（含当前章超预算标记） |
 | **CSA** 稀疏压缩 | 事实三元组时序索引（A 主干）+ 章节向量（B 兜底）+ 句子向量语义召回（C）+ 冷库注入（伏笔/阵营） |
 | **HCA** 重度压缩 | 全书大纲静态段 + 场景规则块切片（Skill YAML 驱动）+ 风格指纹 KL 守卫 |
-| **事实提取** | 题材 profile 化（cultivation / slice / **western**）+ 四证据实体发现（称谓/姓氏/高频跨章/卡先验）+ motif 线索层 |
+| **事实提取** | 题材 profile 化（cultivation / slice / **western** / **generic** 通用）+ 四证据实体发现（称谓/姓氏/高频跨章/卡先验）+ 组合名扩展 + motif 线索层 |
 | **多语言基座** | 拉丁人名（Aragorn）+ 中文音译名（甘道夫/哈利·波特）+ 文言"X曰" + 英文断句/说话人回溯 |
 | **压测基准** | `benchmark_1m.py`：丢章明细、motif 覆盖率、跨章呼应探测、伏笔可及性、三题材矩阵 |
 
@@ -30,6 +30,8 @@ python -m scripts.benchmark_1m \
   --src samples/三国演义/三国演义.txt --skill default \
   --key-entities "刘备,曹操,诸葛亮,云长,孔明"
 
+# 注:key-entities为质量抽检基准：检查这几个名字是否被实体发现引擎收进实体集
+
 # 压测：西幻英文（绿野仙踪，24 章）
 python -m scripts.benchmark_1m \
   --src samples/wizard_of_oz/wizard_of_oz.txt --skill western \
@@ -42,7 +44,7 @@ python -m scripts.benchmark_1m \
 
 | 子目录 | 题材 | 要点 |
 |---|---|---|
-| `三国演义/` | 古典演义（cultivation） | 切章「第X回」、文言"X曰"模板、实体 126 / 事实 133 |
+| `三国演义/` | 古典演义（cultivation 模板并入 generic） | 切章「第X回」、文言"X曰"模板、实体 124 / 事实 689 |
 | `wizard_of_oz/` | 西幻英文（western） | 拉丁人名 39 个、Chapter N/I 切章、英文断句 |
 
 每目录含 `<书名>.txt`（公版原文）+ `benchmark_report.md/json` + `compressed/packet_*.json`。

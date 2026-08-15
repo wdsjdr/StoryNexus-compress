@@ -56,8 +56,21 @@ _TAIL_VERBS = frozenset(
     "看说问道想知感受轻声沉冷笑点头摇头站望盯听退躲藏救杀走来往去握问答应疑"
     "皱起抬头低头转身伸手开口沉默低语呢喃叹息点头微笑皱眉进出回到入上下离"
     "跑跳飞追赶送交给拿取找寻见遇打击败斩灭护帮扶拉拖推抱背带领引跨迈踏踩跃"
-    "冲闯逃停留守等化变转改移看视探察观啊呢吗吧哟哦呀咦嘿呵么"
+    "冲闯逃停留守等化变转改移看视探察观啊呢吗吧哟哦呀咦嘿呵么叫喊喝闻"
+    "曰怒喜惊惧慌忧悲"
 )
+# 组合名扩展的首/尾字过滤（"见八戒/救唐僧"动词头、"唐僧乃/行者闻"虚词/动词尾）
+_EXPAND_BAD_HEAD = frozenset(
+    "见望请说救教唤叫喊问带劝报献送迎寻讨拿把将领率使派遣差请随蒙奉"
+    "好老小大假保这那有各几每此彼其某闻投今即遂乃亦必自皆又但且令"
+)
+_EXPAND_BAD_TAIL = frozenset(
+    "乃闻见使依即心忍急慌才接施暗近随骂喝挑牵指教望奉蒙传问答曰道叫喊皇帝"
+    "呢吗吧么哟呀咦嘿呵坐站住睡哭笑喊一二三四五六七八九十百千万"
+    "亦令先唤必自谓辞遂皆今即兵奸城人请辞"
+) | _TAIL_VERBS | _STOP_CHARS
+# 强证据 3 绕行的首停用字白名单（停用表中可作人名头的古典名：如/哪/太）
+_STRONG3_HEAD_CHARS = frozenset("如哪太")
 _EXCLUDE_WORDS = frozenset(
     "一声|起来|出来|过来|下去|问道|笑道|冷声|轻声|柔声|沉声|淡声|修士|气息|"
     "力量|东西|事情|一般|时候|主人|颤抖|一下|无比|身上|少顷|此刻|下来|"
@@ -128,7 +141,22 @@ _EXCLUDE_WORDS = frozenset(
     "生活|人生|未来|过去|现在|以前|之后|以后|之前|同时|"
     "厨房|卧室|卫生间|阳台|院子|走廊|楼梯|电梯|街角|桥边|树下|河边|湖边|"
     "朋友|同事|上司|老板|顾客|客人|一切|全部|整个|所有|许多|很多|很少|"
-    "一点|一些|一个|一种|".split("|")
+    "一点|一些|一个|一种|"
+    # 通用高频非专名（古典/神魔文本：称谓/副词/动词短语，防"欢喜道/吩咐道"误入实体）
+    "众僧|众官|众神|众猴|众妖|道人|道士|祖师|员外|先生|公公|婆婆|童子|童儿|"
+    "老儿|老君|老妖|老魔|老怪|老龙|土地|菩萨|阎王|天王|王子|国丈|寿星|金星|"
+    "星官|天尊|诸天|罗刹|金刚|雷公|宝殿|后边|房里|路旁|声高|心欢|不尽|"
+    "欢喜|大怒|近前|吩咐|答应|迎接|高叫|仔细|传旨|礼拜|相迎|扯住|启奏|"
+    "合掌|施礼|既如此|快早|莫要|莫念|有人|这等|又见|又问|王闻|吆喝|"
+    "冷笑|厉声|古人|古人云|丞相|万岁|容易|路上|樵子|马匹|妖邪|魔王|云头|"
+    "常言|常言道|方才|利害|只教|向前|胡说|莫胡说|开门|开了门|出门外|"
+    "走出门|张开口|解了绳|收了法|捻着诀|念个咒|败了阵|伏在地|饶了他|"
+    "管事的|须臾间|心惊|心中暗|多心经|到那里|往那里|看那里|都来|马来|"
+    "闻得|闻得此|忽闻得|忍不住|"
+    "这样|那样|这般|那般|如此|这厮|那厮|他们|她们|它们|我们|你们|咱们|"
+    "人家|别人|"
+    "厉声高|满心欢|多官|天师|国王|老者|罗汉|高老|"
+    "诸将|魏主|蜀主|吴主|何必|何足|使者|回报|".split("|")
 )
 
 # ── 百家姓（含仙侠常见"玉/狐/琴"） + slice 补充姓氏 ──
@@ -146,6 +174,13 @@ _SURNAMES = frozenset(
     "廖庾终暨居衡步都耿满弘匡国文寇广禄阙东欧殳沃利蔚越夔隆师巩厩聂晁勾敖"
     "融冷訾辛阚那简饶空曾毋沙乜养鞠须丰巢关蒯相查后荆红游竺权逯盖益桓公玉"
     "狐琴叶钟"
+)
+
+# 称谓主体头字过滤（"拜观音/的长老"类动宾/虚词碎片不作称谓主体；
+# 王母娘娘→母娘娘 碎片跳过依赖其左移主体头字为正常人名头）
+_TITLE_BAD_HEAD = frozenset(
+    "拜见请谢骂喊唤问求随跟送迎往向自至到为是有在的了那这将把被让对与和同"
+    "亲朝谒参奉祭跪告别离依仗借拿抬指看说听闻这那其每各几"
 )
 
 # ── 势力/地名后缀（宗教府宫阁山海外岛洞城省域界门派观殿洲朝国郡…） ──
@@ -238,11 +273,15 @@ def discover_latin_entities(
     return entities
 
 # ── 人物语境（第 3 证据：无姓氏高频人名须有"人味"出现） ──
-_PERSON_VERB_RE = re.compile(
-    r"(?<![\u4e00-\u9fff])([\u4e00-\u9fff]{2,3})"
-    r"(?:说道|说|道|问|看着|抬起头|抬头|转身|走到|接过|递给|点头|摇头|"
+# 通用化：并入古典说话动词（曰/对曰，三国/西游记类）与常见说话/动作动词
+_PERSON_VERB_PATTERN = (
+    r"说道|说|道|问|看着|抬起头|抬头|转身|走到|接过|递给|点头|摇头|"
     r"笑了|皱眉|心想|穿上|戴上|看向|望向|走进|离开|回到|坐在|站起|坐下|"
-    r"开口|答道|回答|站起来|蹲下|伸手|放下|拿起)"
+    r"开口|答道|回答|站起来|蹲下|伸手|放下|拿起|"
+    r"曰|对曰|答曰|言曰|喝道|叫道|笑道|叹道|怒道|惊道|急道|喜道"
+)
+_PERSON_VERB_RE = re.compile(
+    r"(?<![\u4e00-\u9fff])([\u4e00-\u9fff]{2,3})" rf"(?:{_PERSON_VERB_PATTERN})"
 )
 
 
@@ -252,15 +291,7 @@ def _person_context_count(word: str, text: str) -> int:
     注意：无前向边界——"甘道夫对阿拉贡说"中"阿拉贡"前是介词"对"，
     也应计入人物语境（P2 西幻/音译名场景）。
     """
-    return len(
-        re.findall(
-            rf"{re.escape(word)}"
-            r"(?:说道|说|道|问|看着|抬起头|抬头|转身|走到|接过|递给|点头|摇头|"
-            r"笑了|皱眉|心想|穿上|戴上|看向|望向|走进|离开|回到|坐在|站起|坐下|"
-            r"开口|答道|回答|站起来|蹲下|伸手|放下|拿起)",
-            text,
-        )
-    )
+    return len(re.findall(rf"{re.escape(word)}(?:{_PERSON_VERB_PATTERN})", text))
 
 
 def complete_word_count(word: str, text: str) -> int:
@@ -306,19 +337,22 @@ _ACTION_RE = re.compile(
     r"(?P<a>[\u4e00-\u9fff]{2,4})(?P<v>杀死|击杀|救下|救出|击败|打败|抓住|放走|"
     r"斩杀|斩灭|镇压|追杀|护送|交给|送给|赠予|夺走|抢走|"
     r"娶了|收了|驯服|收服|控制|灭杀|救回|带进|带入|离开|加入|进入|"
-    r"引兵|率军|率兵|遣使|遣|破|围|袭|斩)"  # 古典演义军事动词（第X回文本）
+    r"引兵|率军|率兵|遣使|遣|破|围|袭|斩|"
+    r"打死|打伤|打退|杀败|擒住|擒获|捉住|困住|吓退|赶出|骗出|骗走|降服)"  # 通用打斗动词
     r"(?P<o>[\u4e00-\u9fff]{2,4})"
 )
 _ACTION_PREDICATE = {
     "杀死": "杀死", "击杀": "杀死", "斩杀": "杀死", "灭杀": "杀死", "斩": "斩",
+    "打死": "打死", "打伤": "打伤",
     "救下": "救下", "救出": "救下", "救回": "救下",
-    "击败": "击败", "打败": "击败", "破": "攻破",
-    "抓住": "抓住", "放走": "放走",
+    "击败": "击败", "打败": "击败", "打退": "打退", "杀败": "击败", "破": "攻破",
+    "抓住": "抓住", "擒住": "抓住", "擒获": "抓住", "捉住": "抓住", "困住": "困住",
+    "放走": "放走", "吓退": "吓退", "赶出": "赶出",
     "交给": "交给", "送给": "送给", "赠予": "交给",
-    "夺走": "夺走", "抢走": "夺走",
+    "夺走": "夺走", "抢走": "夺走", "骗出": "骗出", "骗走": "骗走",
     "离开": "离开", "加入": "加入", "进入": "进入",
     "引兵": "率军", "率军": "率军", "率兵": "率军", "遣使": "遣使", "遣": "遣",
-    "围": "围攻", "袭": "袭击",
+    "围": "围攻", "袭": "袭击", "降服": "收服",
 }
 
 # ── 古典演义对话（文言"X曰"句式，三国演义等；宾语=引号内容，谓词"曰"） ──
@@ -327,6 +361,19 @@ _CLASSIC_SPEECH_RE = re.compile(
 )
 _CLASSIC_SPEECH_PREDICATE = {
     "曰": "曰", "对曰": "曰", "答曰": "曰", "言曰": "曰",
+}
+
+# ── 通用说话模板（西游记/白话小说/网文："X道/说道/喝道…"；谓词"道"） ──
+_GENERIC_SPEECH_RE = re.compile(
+    r"(?P<a>[\u4e00-\u9fff]{2,4})"
+    r"(?P<v>说道|答道|问道|言道|喝道|叫道|笑道|叹道|怒道|惊道|急道|喜道|"
+    r"道|曰|对曰|答曰|言曰)[：:]?(?P<o>“[^”]{0,20})"
+)
+_GENERIC_SPEECH_PREDICATE = {
+    "曰": "曰", "对曰": "曰", "答曰": "曰", "言曰": "曰",
+    "道": "道", "说道": "道", "答道": "道", "问道": "道", "言道": "道",
+    "喝道": "道", "叫道": "道", "笑道": "道", "叹道": "道", "怒道": "道",
+    "惊道": "道", "急道": "道", "喜道": "道",
 }
 
 # ── slice 动作模板：赠送/信物/日常动作（动词在前，宾语 {2,8} 便于含量词） ──
@@ -362,6 +409,30 @@ def _mk_cultivation_profile() -> FactProfile:
         id="cultivation",
         # 古典演义（第X回）适配：文言"X曰"对话 + 军事动词模板
         action_patterns=[
+            (_ACTION_RE, _ACTION_PREDICATE),
+            (_CLASSIC_SPEECH_RE, _CLASSIC_SPEECH_PREDICATE),
+        ],
+        relationship_verbs=frozenset(),
+        promise_keywords=(),
+    )
+
+
+def _mk_generic_profile() -> FactProfile:
+    """通用（未知文体）profile：白话/文言说话模板 + 通用事件流。
+
+    面向未明确题材的长文：实体发现走共享四证据（含 曰/道 人物语境、
+    停用字强证据绕行、组合名扩展），事实提取覆盖 "X道：“…”" 与
+    通用打斗/交接动词——西游记（神魔话本）与网文白话均可命中。
+    """
+    return FactProfile(
+        id="generic",
+        # 古典称谓补充（神魔/仙侠：菩萨/佛祖/天王/魔王/大圣…）
+        title_suffixes=frozenset(
+            "菩萨|佛祖|天王|元帅|妖王|魔王|大仙|星君|老君|太岁|阎王|龙君|"
+            "大圣|大王|罗汉|圣僧".split("|")
+        ),
+        action_patterns=[
+            (_GENERIC_SPEECH_RE, _GENERIC_SPEECH_PREDICATE),
             (_ACTION_RE, _ACTION_PREDICATE),
             (_CLASSIC_SPEECH_RE, _CLASSIC_SPEECH_PREDICATE),
         ],
@@ -450,15 +521,18 @@ def _mk_western_profile() -> FactProfile:
 CULTIVATION_PROFILE = _mk_cultivation_profile()
 SLICE_PROFILE = _mk_slice_profile()
 WESTERN_PROFILE = _mk_western_profile()
+GENERIC_PROFILE = _mk_generic_profile()
 PROFILES: dict[str, FactProfile] = {
     "cultivation": CULTIVATION_PROFILE,
     "slice": SLICE_PROFILE,
     "western": WESTERN_PROFILE,
+    "generic": GENERIC_PROFILE,
 }
 
 
 def get_profile(profile_id: str | None) -> FactProfile:
-    return PROFILES.get(profile_id or "cultivation", CULTIVATION_PROFILE)
+    """取题材 profile；未知 id 回退通用 generic（未知文体默认）。"""
+    return PROFILES.get(profile_id or "generic", GENERIC_PROFILE)
 
 
 # ═══════════════════════════ 实体发现 ═══════════════════════════
@@ -503,19 +577,39 @@ def discover_entities(
     motifs: set[str] = set(item_names or [])
 
     # 证据 1：称谓后缀（高置信，频率 + 主体过滤去噪）
-    # P1: profile 级称谓合并（西幻：骑士/法师/公爵…）
+    # P1: profile 级称谓合并（西幻：骑士/法师/公爵…；通用：菩萨/大圣/天王…）
     title_suffix = TITLE_SUFFIX
     if profile.title_suffixes:
         title_suffix = f"{TITLE_SUFFIX}|{'|'.join(sorted(profile.title_suffixes))}"
+    # 主体非贪婪捕获 + 后缀分组（profile 级后缀不计入 _title_len，
+    # 直接用捕获的后缀截取主体——修复 profile 后缀词 body 恒为空的问题）。
+    # 无前向边界：中嵌语段的称谓（拜观音菩萨/那太上老君）也计入；
+    # 头字为动/虚词的外层匹配（拜观音）向内层探测真实称谓。
     title_re = re.compile(
-        rf"(?<![\u4e00-\u9fff])([\u4e00-\u9fff]{{2,4}}(?:{title_suffix}))"
+        rf"([\u4e00-\u9fff]{{2,4}}?)((?:{title_suffix}))"
     )
-    title_counter: Counter[str] = Counter(title_re.findall(text))
+    title_counter: Counter[str] = Counter()
+    _title_exempt = ("太上", "太乙", "太白")
+    for m in title_re.finditer(text):
+        mm = m
+        while True:
+            body = mm.group(1)
+            if body[0] not in _TITLE_BAD_HEAD and (
+                body[0] not in _STOP_CHARS or body in _title_exempt
+            ) and (body[-1] not in _STOP_CHARS or body in _title_exempt):
+                break
+            nxt = title_re.match(text, mm.start() + 1)
+            if nxt is None or nxt.start() != mm.start() + 1:
+                break
+            mm = nxt
+        body, name = mm.group(1), mm.group(0)
+        # 主体头字过滤（拜观音/的长老）+ 首/尾停用字（古典尊号头豁免）
+        if body and body[0] not in _TITLE_BAD_HEAD \
+                and (body[0] not in _STOP_CHARS or body in _title_exempt) \
+                and (body[-1] not in _STOP_CHARS or body in _title_exempt):
+            title_counter[name] += 1
     for name, freq in title_counter.items():
-        if freq < min_freq:
-            continue
-        body = name[: -_title_len(name)]
-        if body and body[0] not in _STOP_CHARS and body[-1] not in _STOP_CHARS:
+        if freq >= min_freq:
             entities.add(name)
 
     counter: Counter[str] = Counter(_OVERLAP_2.findall(text))
@@ -528,14 +622,18 @@ def discover_entities(
     n_chapters = len(chapters) if chapters else 5
     motif_span_need = min(profile.min_motif_chapters, max(1, n_chapters // 5))
 
+    # 证据 3 候选（freq/跨章先筛）、2 字姓氏词 bounded 兜底（唐僧类：
+    # "唐僧道/云长曰"中名字恒嵌语段内，整词边界天然偏低 → 用语境兜底）、
+    # 强证据绕行候选（如来类：首停用+尾动词）。
+    ev3_need = max(profile.high_freq_min, 5 * min_freq)
+    ctx_need: dict[str, int] = {}
+    surname_ctx_need: dict[str, int] = {}
+    strong3_words: set[str] = set()
+
     for word, freq in counter.items():
         if word in entities or word in motifs:
             continue
         if word in _EXCLUDE_WORDS:
-            continue
-        if word[0] in _STOP_CHARS or word[-1] in _STOP_CHARS:
-            continue
-        if word[-1] in _TAIL_VERBS:
             continue
 
         # motif 线索层优先判定（宽松门槛：词频 + 跨章 + 线索尾缀 + 左边界出现）。
@@ -555,24 +653,99 @@ def discover_entities(
         if freq < threshold:
             continue
         bounded_need = 0 if min_freq < 3 else max(1, min(3, freq // 5))
-        if bounded.get(word, 0) < bounded_need:
+
+        # 首/尾停用字与尾部动词过滤（"唐僧道/高叫/他们"类）；
+        # 仅白名单首停用字的强证据词（如/哪/太：如来/哪吒/太宗）进入绕行候选池
+        if (
+            word[0] in _STOP_CHARS
+            or word[-1] in _STOP_CHARS
+            or word[-1] in _TAIL_VERBS
+        ):
+            if (
+                word[0] in _STRONG3_HEAD_CHARS
+                and freq >= ev3_need
+                and _chapter_span(word, text, chapters) >= profile.high_freq_span
+            ):
+                strong3_words.add(word)
+                ctx_need[word] = max(profile.min_person_ctx, freq // 10)
             continue
 
         # 证据 2：姓氏开头（人名）或 势力/功法后缀（地名/器物）
         if word[0] in surnames:
+            if bounded.get(word, 0) < bounded_need:
+                # 整词边界不足 → 2-3 字词允许人物语境兜底（唐僧/李天王类）
+                if len(word) in (2, 3):
+                    surname_ctx_need[word] = profile.min_person_ctx
+                continue
             entities.add(word)
             continue
         if word[-1] in _PLACE_SUFFIXES or word[-1] in _ARTIFACT_SUFFIXES:
-            entities.add(word)
+            if bounded.get(word, 0) >= bounded_need:
+                entities.add(word)
             continue
 
-        # 证据 3：高频 + 跨章 + 人物语境（无姓氏人名；P1 起全 profile 开放——
-        # 三国"玄德"、西幻音译"甘道夫"皆为此类；freq/跨章/语境三重门槛防误检）
+        # 证据 3 候选：高频 + 跨章（人物语境批量计算在循环外）
+        if freq >= ev3_need and _chapter_span(word, text, chapters) >= profile.high_freq_span:
+            ctx_need[word] = max(profile.min_person_ctx, freq // 10)
+
+    # 批量人物语境：无边界（ctx）与左边界（left_ctx）一次全文扫描
+    if ctx_need or surname_ctx_need:
+        pool = sorted(set(ctx_need) | set(surname_ctx_need), key=len, reverse=True)
+        alt = "|".join(re.escape(w) for w in pool)
+        ctx_counter: Counter[str] = Counter(
+            m.group(1) for m in re.finditer(rf"({alt})(?:{_PERSON_VERB_PATTERN})", text)
+        )
+        left_ctx_counter: Counter[str] = Counter(
+            m.group(1)
+            for m in re.finditer(rf"(?<![\u4e00-\u9fff])({alt})(?:{_PERSON_VERB_PATTERN})", text)
+        )
+    else:
+        ctx_counter, left_ctx_counter = Counter(), Counter()
+
+    # 姓氏词语境兜底（须左边界语境且尾字非动词/虚词：
+    # 挡住"冷笑道/王闻言/孔明遂"类副词与动词短语）
+    for word, need in surname_ctx_need.items():
         if (
-            freq >= max(profile.high_freq_min, 5 * min_freq)
-            and _chapter_span(word, text, chapters) >= profile.high_freq_span
-            and _person_context_count(word, text) >= profile.min_person_ctx
+            ctx_counter.get(word, 0) >= need
+            and left_ctx_counter.get(word, 0) >= 2
+            and word[-1] not in _EXPAND_BAD_TAIL
         ):
+            entities.add(word)
+
+    # 证据 3：高频 + 跨章 + 人物语境密度 + 左边界语境
+    # （"悟空道"多现于句首/标点后；"欢喜/仔细"等形容词恒嵌语段内被过滤）
+    for word, need in ctx_need.items():
+        ctx = ctx_counter.get(word, 0)
+        if ctx < need:
+            continue
+        if word in strong3_words:
+            # 强证据绕行（哪吒/太宗/如来类：首停用+左边界语境 ≥2）
+            if left_ctx_counter.get(word, 0) >= 2:
+                entities.add(word)
+            continue
+        left_need = max(2, counter[word] // 15) if min_freq >= 3 else 0
+        if left_ctx_counter.get(word, 0) >= left_need:
+            entities.add(word)
+
+    # 组合名扩展：已发现实体 X 的扩展形式（X八戒/X三藏/X大圣）——
+    # 3-4 字、含实体子串、词频达标、整词边界 ≥1、首字非动词/形容词/停用、
+    # 尾字非说话/动作动词（"悟空道/见八戒/好行者"类碎片被首尾过滤）。
+    for word in sorted(counter, key=lambda w: -counter[w]):
+        if len(word) not in (3, 4) or word in entities or word in motifs:
+            continue
+        if word in _EXCLUDE_WORDS:
+            continue
+        if counter[word] < min_freq or left_bounded.get(word, 0) < 1:
+            continue
+        # 整词边界 ≥1（"保唐僧/假唐僧"类动宾碎片无整词出现）；
+        # 姓氏头豁免（牛魔王/唐三藏 恒嵌"X道"语段内，bounded 天然为 0）
+        if bounded.get(word, 0) < 1 and word[0] not in surnames:
+            continue
+        if word[0] in _STOP_CHARS or word[0] in _EXPAND_BAD_HEAD:
+            continue
+        if word[-1] in _STOP_CHARS or word[-1] in _EXPAND_BAD_TAIL:
+            continue
+        if any(len(e) >= 2 and e in word for e in entities):
             entities.add(word)
             continue
 
@@ -640,9 +813,9 @@ def extract_heuristic_facts(
             return False
         if subject not in entities:
             return False
-        # 约定/文言"曰"/西幻宽松宾语 允许非实体宾语，其余须 ∈ 实体∪motif
+        # 约定/文言"曰"/通用"道"/西幻宽松宾语 允许非实体宾语，其余须 ∈ 实体∪motif
         if (
-            predicate not in (PROMISE_PREDICATE, "曰")
+            predicate not in (PROMISE_PREDICATE, "曰", "道")
             and predicate not in relaxed_predicates
             and obj not in objects_allowed
         ):
@@ -675,8 +848,15 @@ def extract_heuristic_facts(
         for m in pattern.finditer(content):
             a = m.group("a")
             predicate = predicate_map.get(m.group("v"), "动作")
-            # 宾语候选：捕获文本中出现的实体/motif，取最后出现者（信物/目标）
             captured = m.group("o")
+            # 说话模板（曰/道）：宾语直接取引号内容（主语已在实体集内）；
+            # 不走实体候选（"悟空道：“八戒…”"的宾语是话语而非八戒）
+            if predicate in ("曰", "道"):
+                obj = _clean_quote(captured)
+                if obj:
+                    add(a, predicate, obj)
+                continue
+            # 宾语候选：捕获文本中出现的实体/motif，取最后出现者（信物/目标）
             cands: list[tuple[int, str]] = []
             for w in entities:
                 pos = captured.find(w)
@@ -716,6 +896,16 @@ def _clean_obj(raw: str) -> str:
     """动作宾语去量词/代词前缀与语气词尾；剩余 ≥2 字才返回。"""
     s = _OBJ_PREFIX_RE.sub("", raw.strip())
     s = _OBJ_TAIL_RE.sub("", s)
+    return s if len(s) >= 2 else ""
+
+
+_QUOTE_TAIL_RE = re.compile(r"[\s，。；：！？、…—]+$")
+
+
+def _clean_quote(raw: str) -> str:
+    """说话模板宾语：去开引号与尾部标点；剩余 ≥2 字才返回。"""
+    s = raw.strip().lstrip("\u201c\u201d\u300c\u300d\"'")
+    s = _QUOTE_TAIL_RE.sub("", s)
     return s if len(s) >= 2 else ""
 
 

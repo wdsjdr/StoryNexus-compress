@@ -2,7 +2,7 @@ schema_version: "1.0"
 skill_id: "default"
 name: "通用"
 description: "兼容所有题材的均衡技能，权重均布"
-fact_profile: "cultivation"
+fact_profile: "generic"
 version: 1
 
 # 提示词插槽（留空 = 纯基础模板，无题材增量约束）

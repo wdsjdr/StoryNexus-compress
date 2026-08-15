@@ -60,9 +60,10 @@ class SkillSpec(BaseModel):
     scene_rule_blocks: list[SceneRuleBlock] = Field(default_factory=list)
     scene_rule_map: dict[str, list[str]] = Field(default_factory=dict)
 
-    # M12: 事实提取 profile（cultivation=修仙/权谋事件流 / slice=日常文线索）
+    # M12: 事实提取 profile（cultivation=修仙/权谋事件流 / slice=日常文线索 /
+    # generic=通用未知文体兜底）
     # 驱动 heuristic_facts.FactProfile；benchmark --skill 与导入管线联动
-    fact_profile: str = Field(default="cultivation", pattern=r"^(cultivation|slice|western)$")
+    fact_profile: str = Field(default="generic", pattern=r"^(cultivation|slice|western|generic)$")
 
     def effective_weights(self, defaults: dict[str, float]) -> dict[str, float]:
         """权重合并：skill 缺省的维度回退到 defaults。"""
