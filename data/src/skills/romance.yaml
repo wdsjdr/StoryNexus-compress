@@ -1,0 +1,71 @@
+# ============================================================
+# 言情题材 Skill（由 romance.yaml.template 填写生成）
+# ============================================================
+schema_version: "1.0"
+skill_id: "romance"
+name: "言情"
+description: "情感张力、潜台词、关系节奏"
+fact_profile: "slice"
+version: 1
+
+writer_prompt: |
+  文风硬约束：
+  1. 情感转折必须由事件驱动，禁止内心独白直白宣泄。
+  2. 对话以潜台词为主，禁止直白表白与解释性对白堆砌。
+  3. 细节（信物/动作/环境）承担记忆锚点，描写克制不煽情。
+
+evaluator_criteria: |
+  题材红线：
+  - dialogue_quality 权重拉满：潜台词密度是核心标准。
+  - pacing 检查情感推进是否由事件驱动而非旁白解释。
+  - canon_consistency 检查人物关系与信物设定前后一致。
+
+patcher_style: |
+  修补约束：修补后的句子必须保持留白式语感，禁止扩写解释或加感叹号堆情绪。
+
+weights:
+  fsm_compliance: 0.15
+  intent_alignment: 0.10
+  dialogue_quality: 0.50
+  pacing: 0.10
+  canon_consistency: 0.15
+
+forbidden_words:
+  - "他深深地看着她"
+  - "她的心怦怦直跳"
+  - "眼中闪过一丝复杂的情绪"
+  - "空气突然安静下来"
+
+style_fingerprint:
+  avg_sentence_len: 22
+  exclamation_density: 0.03
+  dialogue_ratio: 0.40
+
+scene_keywords:
+  battle: ["争吵", "误会", "摊牌", "决裂"]
+  politics: ["家庭", "工作", "同学", "搬家"]
+  romance: ["重逢", "约定", "红绳", "槐花", "薄荷糖"]
+
+# M9: HCA 场景规则块（作者可编辑，替代 hca.py 硬编码）
+scene_rule_blocks:
+  - id: "conflict_rules"
+    title: "情感冲突规则"
+    tags: ["battle"]
+    content: "争吵/摊牌场景由事件触发，禁止角色用旁白式内心直陈推进冲突；和好需信物或行动作为锚点。"
+  - id: "life_rules"
+    title: "生活日常规则"
+    tags: ["politics"]
+    content: "家庭/工作/校园场景节奏平缓，细节承担记忆锚点；时间跨度交代清晰，避免连续场景模糊。"
+  - id: "relationship_rules"
+    title: "情感关系规则"
+    tags: ["romance"]
+    content: "情感升温由共同事件驱动；约定与信物（红绳/槐花/薄荷糖）保持设定一致，不可随意失效。"
+  - id: "dialogue_rules"
+    title: "潜台词对话规则"
+    tags: ["romance"]
+    content: "对话以潜台词为主，单句不超过 20 字；禁止直白表白与解释性对白堆砌。"
+
+scene_rule_map:
+  battle: ["conflict_rules"]
+  politics: ["life_rules"]
+  romance: ["relationship_rules", "dialogue_rules"]

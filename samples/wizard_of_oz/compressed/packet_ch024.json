@@ -1,0 +1,43 @@
+{
+  "chapter_no": 24,
+  "source": "wizard_of_oz（压测）",
+  "说明": "SWA=近章原文(压缩前), CSA=窗口事实+伏笔+阵营+语义句, HCA=题材规则块, facts_epoch=前5章剧情摘要",
+  "swa": {
+    "chapter_nos": [
+      22,
+      23,
+      24
+    ],
+    "tokens": 2967,
+    "dropped": [],
+    "preview_800_chars": {
+      "22": "Chapter XXII\nThe Country of the Quadlings\n\n\nThe four travelers passed through the rest of the forest in safety, and\nwhen they came out from its gloom saw before them a steep hill, covered\nfrom top to bottom with great pieces of rock.\n\n“That will be a hard climb,” said the Scarecrow, “but we must get over\nthe hill, nevertheless.”\n\nSo he led the way and the others followed. They had nearly reached the\nfirst rock when they heard a rough voice cry out, “Keep back!”\n\n“Who are you?” asked the Scarecrow.\n\nThen a head showed itself over the rock and the same voice said, “This\nhill belongs to us, and we don’t allow anyone to cross it.”\n\n“But we must cross it,” said the Scarecrow. “We’re going to the country\nof the Quadlings.”\n\n“But you shall not!” replied the voice, and there stepped from behind\nth…",
+      "23": "Chapter XXIII\nGlinda The Good Witch Grants Dorothy’s Wish\n\n\nBefore they went to see Glinda, however, they were taken to a room of\nthe Castle, where Dorothy washed her face and combed her hair, and the\nLion shook the dust out of his mane, and the Scarecrow patted himself\ninto his best shape, and the Woodman polished his tin and oiled his\njoints.\n\nWhen they were all quite presentable they followed the soldier girl\ninto a big room where the Witch Glinda sat upon a throne of rubies.\n\nShe was both beautiful and young to their eyes. Her hair was a rich red\nin color and fell in flowing ringlets over her shoulders. Her dress was\npure white but her eyes were blue, and they looked kindly upon the\nlittle girl.\n\n“What can I do for you, my child?” she asked.\n\nDorothy told the Witch all her story: how t…",
+      "24": "Chapter XXIV\nHome Again\n\n\nAunt Em had just come out of the house to water the cabbages when she\nlooked up and saw Dorothy running toward her.\n\n“My darling child!” she cried, folding the little girl in her arms and\ncovering her face with kisses. “Where in the world did you come from?”\n\n“From the Land of Oz,” said Dorothy gravely. “And here is Toto, too.\nAnd oh, Aunt Em! I’m so glad to be at home again!”"
+    }
+  },
+  "csa": {
+    "tokens": 34,
+    "source": "sentences",
+    "facts_text": [],
+    "sentences": [
+      "ch1·When Dorothy",
+      "ch2·But Dorothy",
+      "ch6·when\nDorothy",
+      "ch10·” said\nDorothy",
+      "ch17·Dorothy!"
+    ],
+    "foreshadows": [],
+    "factions": []
+  },
+  "hca": {
+    "blocks": [],
+    "tokens": 11,
+    "contents": []
+  },
+  "facts_epoch": {
+    "epoch": 4,
+    "summary_tokens": 0,
+    "summary": ""
+  }
+}

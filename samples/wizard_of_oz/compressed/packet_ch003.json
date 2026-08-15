@@ -1,0 +1,43 @@
+{
+  "chapter_no": 3,
+  "source": "wizard_of_oz（压测）",
+  "说明": "SWA=近章原文(压缩前), CSA=窗口事实+伏笔+阵营+语义句, HCA=题材规则块, facts_epoch=前5章剧情摘要",
+  "swa": {
+    "chapter_nos": [
+      1,
+      2,
+      3
+    ],
+    "tokens": 6591,
+    "dropped": [],
+    "preview_800_chars": {
+      "1": "Chapter I\nThe Cyclone\n\n\nDorothy lived in the midst of the great Kansas prairies, with Uncle\nHenry, who was a farmer, and Aunt Em, who was the farmer’s wife. Their\nhouse was small, for the lumber to build it had to be carried by wagon\nmany miles. There were four walls, a floor and a roof, which made one\nroom; and this room contained a rusty looking cookstove, a cupboard for\nthe dishes, a table, three or four chairs, and the beds. Uncle Henry\nand Aunt Em had a big bed in one corner, and Dorothy a little bed in\nanother corner. There was no garret at all, and no cellar—except a\nsmall hole dug in the ground, called a cyclone cellar, where the family\ncould go in case one of those great whirlwinds arose, mighty enough to\ncrush any building in its path. It was reached by a trap door in the\nmiddle …",
+      "2": "Chapter II\nThe Council with the Munchkins\n\n\nShe was awakened by a shock, so sudden and severe that if Dorothy had\nnot been lying on the soft bed she might have been hurt. As it was, the\njar made her catch her breath and wonder what had happened; and Toto\nput his cold little nose into her face and whined dismally. Dorothy sat\nup and noticed that the house was not moving; nor was it dark, for the\nbright sunshine came in at the window, flooding the little room. She\nsprang from her bed and with Toto at her heels ran and opened the door.\n\nThe little girl gave a cry of amazement and looked about her, her eyes\ngrowing bigger and bigger at the wonderful sights she saw.\n\nThe cyclone had set the house down very gently—for a cyclone—in the\nmidst of a country of marvelous beauty. There were lovely pat…",
+      "3": "Chapter III\nHow Dorothy Saved the Scarecrow\n\n\nWhen Dorothy was left alone she began to feel hungry. So she went to\nthe cupboard and cut herself some bread, which she spread with butter.\nShe gave some to Toto, and taking a pail from the shelf she carried it\ndown to the little brook and filled it with clear, sparkling water.\nToto ran over to the trees and began to bark at the birds sitting\nthere. Dorothy went to get him, and saw such delicious fruit hanging\nfrom the branches that she gathered some of it, finding it just what\nshe wanted to help out her breakfast.\n\nThen she went back to the house, and having helped herself and Toto to\na good drink of the cool, clear water, she set about making ready for\nthe journey to the City of Emeralds.\n\nDorothy had only one other dress, but that happened t…"
+    }
+  },
+  "csa": {
+    "tokens": 30,
+    "source": "sentences",
+    "facts_text": [],
+    "sentences": [
+      "ch1·When Dorothy",
+      "ch2·so Dorothy said",
+      "ch2·” said Dorothy",
+      "ch2·“Is your name Dorothy",
+      "ch2·But Dorothy"
+    ],
+    "foreshadows": [],
+    "factions": []
+  },
+  "hca": {
+    "blocks": [],
+    "tokens": 11,
+    "contents": []
+  },
+  "facts_epoch": {
+    "epoch": 0,
+    "summary_tokens": 0,
+    "summary": ""
+  }
+}

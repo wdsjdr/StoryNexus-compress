@@ -1,0 +1,33 @@
+{
+  "chapter_no": 1,
+  "source": "wizard_of_oz（压测）",
+  "说明": "SWA=近章原文(压缩前), CSA=窗口事实+伏笔+阵营+语义句, HCA=题材规则块, facts_epoch=前5章剧情摘要",
+  "swa": {
+    "chapter_nos": [
+      1
+    ],
+    "tokens": 1431,
+    "dropped": [],
+    "preview_800_chars": {
+      "1": "Chapter I\nThe Cyclone\n\n\nDorothy lived in the midst of the great Kansas prairies, with Uncle\nHenry, who was a farmer, and Aunt Em, who was the farmer’s wife. Their\nhouse was small, for the lumber to build it had to be carried by wagon\nmany miles. There were four walls, a floor and a roof, which made one\nroom; and this room contained a rusty looking cookstove, a cupboard for\nthe dishes, a table, three or four chairs, and the beds. Uncle Henry\nand Aunt Em had a big bed in one corner, and Dorothy a little bed in\nanother corner. There was no garret at all, and no cellar—except a\nsmall hole dug in the ground, called a cyclone cellar, where the family\ncould go in case one of those great whirlwinds arose, mighty enough to\ncrush any building in its path. It was reached by a trap door in the\nmiddle …"
+    }
+  },
+  "csa": {
+    "tokens": 0,
+    "source": "empty",
+    "facts_text": [],
+    "sentences": [],
+    "foreshadows": [],
+    "factions": []
+  },
+  "hca": {
+    "blocks": [],
+    "tokens": 11,
+    "contents": []
+  },
+  "facts_epoch": {
+    "epoch": 0,
+    "summary_tokens": 0,
+    "summary": ""
+  }
+}

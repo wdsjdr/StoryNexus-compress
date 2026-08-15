@@ -1,0 +1,38 @@
+# ============================================================
+# 都市题材 Skill 模板
+# 使用方法：复制本文件 → 重命名 urban.yaml → 填写字段 → 放入 data/src/skills/
+# 字段说明同 xuanhuan.yaml.template 顶部注释
+# ============================================================
+schema_version: "1.0"
+skill_id: "urban"
+name: "都市"
+description: "现代语境、职场权谋、爽感节奏"
+version: 1
+
+writer_prompt: |
+  # 文风硬约束。
+
+evaluator_criteria: |
+  # 题材红线。
+
+patcher_style: |
+  # 修补约束。
+
+weights:
+  fsm_compliance: 0.25
+  intent_alignment: 0.20
+  dialogue_quality: 0.20
+  pacing: 0.15
+  canon_consistency: 0.20
+
+forbidden_words: []
+
+style_fingerprint:
+  avg_sentence_len: 0
+  exclamation_density: 0
+  dialogue_ratio: 0
+
+scene_keywords:
+  battle: []
+  politics: []
+  romance: []

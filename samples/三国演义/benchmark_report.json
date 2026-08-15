@@ -1,0 +1,118 @@
+{
+  "source": "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\三国演义\\三国演义.txt",
+  "generated_at": "2026-08-15 23:32:46",
+  "skill": "default",
+  "fact_profile": "cultivation",
+  "stats": {
+    "total_chars": 600586,
+    "chars_no_space": 591301,
+    "total_tokens_measured": 834526,
+    "tokens_per_char": 1.4113,
+    "predicted_total_tokens_1p8": 1064342,
+    "chapters": 120,
+    "avg_tokens_per_chapter": 6954
+  },
+  "swa": {
+    "budget_max_tokens": 32000,
+    "chapters_with_drop": 0,
+    "chapters_over_budget_alone": [],
+    "total_swa_tokens": 2478316,
+    "avg_ms": 1.92,
+    "drops": []
+  },
+  "tier_b_simulation": {
+    "chapters_truncated_to_15k_chars": 120,
+    "swa_drop_with_15k_chapters": 2,
+    "total_swa_tokens_15k_chapters": 2478316,
+    "avg_swa_per_chapter_15k": 20653
+  },
+  "csa": {
+    "total_facts": 133,
+    "total_csa_tokens": 11410,
+    "avg_ms": 332.95,
+    "sentence_recall_hits": 360,
+    "foreshadow_injections": 0,
+    "hot_zone_chapters": 50
+  },
+  "fact_quality": {
+    "entities": 126,
+    "motifs": [],
+    "facts": 133,
+    "key_entities": [
+      "刘备",
+      "曹操",
+      "诸葛亮",
+      "云长",
+      "孔明"
+    ],
+    "key_entities_kept": true,
+    "non_entity_subjects": 0,
+    "garbage_fragments": 0,
+    "card_prior": {
+      "enabled": false,
+      "card_names": [],
+      "item_names": []
+    },
+    "note": "profile=cultivation；实体/motif/卡先验；登场已移除"
+  },
+  "narrative": {
+    "foreshadows": 0,
+    "factions": 0,
+    "open_foreshadows": 0,
+    "outside_swa_foreshadows": 0
+  },
+  "hca": [
+    {
+      "scene": "battle",
+      "blocks": [],
+      "tokens": 12,
+      "ms": 0.03
+    },
+    {
+      "scene": "politics",
+      "blocks": [],
+      "tokens": 12,
+      "ms": 0.01
+    },
+    {
+      "scene": "romance",
+      "blocks": [],
+      "tokens": 12,
+      "ms": 0.0
+    }
+  ],
+  "one_million_window": {
+    "last_chapter": 120,
+    "last_chapter_tokens": 9361,
+    "swa_1m_tokens": 21315,
+    "compressed_context_tokens": 21477,
+    "compress_ratio": 0.436,
+    "coverage_1m_compressed_chapters": 43,
+    "coverage_1m_raw_chapters": 106,
+    "meaning": "1M 窗口可覆盖的章数（压缩 vs 原文）"
+  },
+  "coverage": {
+    "motif_coverage": [],
+    "echo_probe": [],
+    "relationship_retention": {
+      "character_pairs": 5177,
+      "relation_facts": 0
+    },
+    "foreshadow_reachability": {
+      "open": 0,
+      "outside_swa": 0,
+      "injected_via_csa": 0
+    }
+  },
+  "budget_hit_rate": {
+    "swa_within_32k": 1.0,
+    "hca_within_2k": 1.0
+  },
+  "llm_facts": null,
+  "files": [
+    "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\三国演义\\compressed\\packet_ch001.json",
+    "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\三国演义\\compressed\\packet_ch002.json",
+    "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\三国演义\\compressed\\packet_ch003.json",
+    "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\三国演义\\compressed\\packet_ch120.json"
+  ]
+}

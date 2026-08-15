@@ -1,0 +1,40 @@
+# ============================================================
+# 言情题材 Skill 模板
+# 使用方法：复制本文件 → 重命名 romance.yaml → 填写字段 → 放入 data/src/skills/
+# 字段说明同 xuanhuan.yaml.template 顶部注释
+# ============================================================
+schema_version: "1.0"
+skill_id: "romance"
+name: "言情"
+description: "情感张力、潜台词、关系节奏"
+version: 1
+
+writer_prompt: |
+  # 文风硬约束，例如：
+  # 1. 情感转折必须由事件驱动，禁止内心独白直白宣泄。
+
+evaluator_criteria: |
+  # 题材红线，例如：
+  # - dialogue_quality 权重拉满：潜台词密度是核心标准。
+
+patcher_style: |
+  # 修补约束。
+
+weights:
+  fsm_compliance: 0.15
+  intent_alignment: 0.10
+  dialogue_quality: 0.50
+  pacing: 0.10
+  canon_consistency: 0.15
+
+forbidden_words: []
+
+style_fingerprint:
+  avg_sentence_len: 0
+  exclamation_density: 0
+  dialogue_ratio: 0
+
+scene_keywords:
+  battle: []
+  politics: []
+  romance: []

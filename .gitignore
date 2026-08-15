@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# 压测中间产物
+samples/benchmark_facts/
+samples/meta/
+*.db

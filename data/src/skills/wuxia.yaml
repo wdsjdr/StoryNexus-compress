@@ -1,0 +1,65 @@
+schema_version: "1.0"
+skill_id: "wuxia"
+name: "武侠"
+description: "古龙式短句、动作留白、场景关键词特化"
+fact_profile: "cultivation"
+version: 1
+
+writer_prompt: |
+  文风硬约束：
+  1. 对话使用短句，单句不超过 12 字，潜台词优先。
+  2. 战斗描写以动作+留白为主，禁止招式名称堆砌。
+  3. 环境描写一笔带过，重意不重形。
+
+evaluator_criteria: |
+  题材红线：
+  - 武侠场景中 pacing 侧重信息密度而非情节推进速度。
+  - dialogue_quality 额外检查：是否出现现代白话口语。
+  - canon_consistency 检查武功体系前后设定是否一致。
+
+patcher_style: |
+  修补约束：修补后的句子必须保持古龙式短句语感，禁止扩写成长句。
+
+weights:
+  fsm_compliance: 0.25
+  intent_alignment: 0.20
+  dialogue_quality: 0.25
+  pacing: 0.15
+  canon_consistency: 0.15
+
+forbidden_words:
+  - "总而言之"
+  - "仿佛在诉说"
+  - "他的眼中闪过一丝复杂的神色"
+  - "深吸一口气"
+  - "殊不知"
+
+style_fingerprint:
+  avg_sentence_len: 14
+  exclamation_density: 0.02
+  dialogue_ratio: 0.45
+
+scene_keywords:
+  battle: ["过招", "剑气", "决斗", "雨夜追杀", "出鞘"]
+  politics: ["门派", "盟主", "夺位", "武林大会"]
+  romance: ["江湖", "红颜", "相忘"]
+
+# M9: HCA 场景规则块（作者可编辑，替代 hca.py 硬编码）
+scene_rule_blocks:
+  - id: "power_rules"
+    title: "武学运转规则"
+    tags: ["battle"]
+    content: "内力运转以丹田为枢，招式耗内；轻功踏雪无痕，不可凭空飞行。"
+  - id: "politics_rules"
+    title: "江湖秩序规则"
+    tags: ["politics"]
+    content: "武林大会由盟主主持；门派纷争以比武定胜负，禁止屠戮妇孺。"
+  - id: "relationship_rules"
+    title: "江湖情义规则"
+    tags: ["romance"]
+    content: "师徒恩义大于私情；江湖承诺一言九鼎，背信者遭群起而攻。"
+
+scene_rule_map:
+  battle: ["power_rules"]
+  politics: ["politics_rules"]
+  romance: ["relationship_rules"]

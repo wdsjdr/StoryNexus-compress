@@ -1,0 +1,65 @@
+schema_version: "1.0"
+skill_id: "mystery"
+name: "悬疑"
+description: "逻辑一致性权重拉满，禁止提前泄底"
+fact_profile: "slice"
+version: 1
+
+writer_prompt: |
+  文风硬约束：
+  1. 严禁提前泄底：真相线索必须逐层释放，本章不得解开核心谜题。
+  2. 伏笔必须可回收：新出现的细节若不可被前文解释，则不允许出现。
+  3. 信息不对称：叙述者所知 <= 读者所知。
+
+evaluator_criteria: |
+  题材红线：
+  - canon_consistency 权重极高：任何逻辑漏洞直接判低分。
+  - pacing 允许慢热铺陈，但每章结尾必须有钩子。
+  - 检查是否"提前泄底"：若本章揭示核心谜题，verdict 强制 reject。
+
+patcher_style: |
+  修补约束：只修改逻辑漏洞局部，禁止改变信息释放顺序。
+
+weights:
+  fsm_compliance: 0.40
+  intent_alignment: 0.15
+  dialogue_quality: 0.15
+  pacing: 0.10
+  canon_consistency: 0.20
+
+forbidden_words:
+  - "原来如此"
+  - "真相大白"
+  - "突然想起"
+  - "不知为何"
+  - "莫名其妙地"
+
+style_fingerprint:
+  avg_sentence_len: 18
+  exclamation_density: 0.01
+  dialogue_ratio: 0.35
+
+scene_keywords:
+  battle: ["追击", "灭口", "缠斗"]
+  politics: ["勒索", "交易", "灭证"]
+  romance: ["试探", "隐瞒", "托付"]
+
+# M9: HCA 场景规则块（作者可编辑）
+scene_rule_blocks:
+  - id: "evidence_rules"
+    title: "物证逻辑规则"
+    tags: ["battle", "politics"]
+    content: "每个新物证必须可被前文伏笔解释；凶器必须在案发现场或凶手处找到。"
+  - id: "timeline_rules"
+    title: "时间线规则"
+    tags: ["politics"]
+    content: "不在场证明必须与全书时间线自洽；同一时刻角色不能分身两地。"
+  - id: "concealment_rules"
+    title: "信息隐藏规则"
+    tags: ["romance"]
+    content: "叙述者所知 ≤ 读者所知；真相线索逐层释放，禁止提前泄底。"
+
+scene_rule_map:
+  battle: ["evidence_rules"]
+  politics: ["evidence_rules", "timeline_rules"]
+  romance: ["concealment_rules"]

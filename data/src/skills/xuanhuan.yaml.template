@@ -1,0 +1,51 @@
+# ============================================================
+# 玄幻题材 Skill 模板
+# 使用方法：
+#   1. 复制本文件并重命名为 xuanhuan.yaml（去掉 .template 后缀）
+#   2. 修改各字段内容
+#   3. 放入 data/src/skills/ 目录即可被 SkillRegistry 装载
+# 字段说明：
+#   writer_prompt     → 注入 Writer System Prompt 的文风硬约束（增量，无需抄整段）
+#   evaluator_criteria→ 注入 Evaluator System Prompt 的题材红线
+#   patcher_style     → 注入 Patcher 的修补语感约束
+#   weights           → 题材曲率：5 维度权重（可只写需要调整的维度，其余回退 default）
+#   forbidden_words   → StyleLint 硬拦截词表（命中即生成 PatchInstruction，零 Token）
+#   style_fingerprint → 风格指纹目标（M4 起用于 KL 散度对齐，当前仅日志记录）
+#   scene_keywords    → SceneResolver 场景类型预测关键词
+# ============================================================
+schema_version: "1.0"
+skill_id: "xuanhuan"
+name: "玄幻"
+description: "境界体系、天地异象、爽点节奏"
+version: 1
+
+writer_prompt: |
+  # 在此填写文风硬约束，例如：
+  # 1. 境界突破必须伴随天地异象。
+  # 2. 战斗爽点优先：弱胜强需给出合理解释。
+
+evaluator_criteria: |
+  # 在此填写题材红线，例如：
+  # - canon_consistency 检查境界体系前后一致性。
+
+patcher_style: |
+  # 在此填写修补约束。
+
+weights:
+  fsm_compliance: 0.25
+  intent_alignment: 0.20
+  dialogue_quality: 0.20
+  pacing: 0.15
+  canon_consistency: 0.20
+
+forbidden_words: []
+
+style_fingerprint:
+  avg_sentence_len: 0
+  exclamation_density: 0
+  dialogue_ratio: 0
+
+scene_keywords:
+  battle: []
+  politics: []
+  romance: []

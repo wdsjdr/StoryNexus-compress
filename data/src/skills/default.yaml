@@ -1,0 +1,31 @@
+schema_version: "1.0"
+skill_id: "default"
+name: "通用"
+description: "兼容所有题材的均衡技能，权重均布"
+fact_profile: "cultivation"
+version: 1
+
+# 提示词插槽（留空 = 纯基础模板，无题材增量约束）
+writer_prompt: ""
+evaluator_criteria: ""
+patcher_style: ""
+
+# 题材曲率：均衡权重
+weights:
+  fsm_compliance: 0.25
+  intent_alignment: 0.20
+  dialogue_quality: 0.20
+  pacing: 0.15
+  canon_consistency: 0.20
+
+# StyleLint 硬拦截词表（留空 = 不拦截）
+forbidden_words: []
+
+# 风格指纹（0 = 不约束）
+style_fingerprint:
+  avg_sentence_len: 0
+  exclamation_density: 0
+  dialogue_ratio: 0
+
+# 场景关键词（空 = 使用内置全局默认表）
+scene_keywords: {}

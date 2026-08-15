@@ -1,0 +1,40 @@
+# ============================================================
+# 科幻题材 Skill 模板
+# 使用方法：复制本文件 → 重命名 scifi.yaml → 填写字段 → 放入 data/src/skills/
+# 字段说明同 xuanhuan.yaml.template 顶部注释
+# ============================================================
+schema_version: "1.0"
+skill_id: "scifi"
+name: "科幻"
+description: "硬设定一致性、科技感描写"
+version: 1
+
+writer_prompt: |
+  # 文风硬约束，例如：
+  # 1. 科技细节必须自洽，禁止引入未在设定中出现的技术名词。
+
+evaluator_criteria: |
+  # 题材红线，例如：
+  # - canon_consistency 权重拉满：物理规则/科技设定矛盾直接判低分。
+
+patcher_style: |
+  # 修补约束。
+
+weights:
+  fsm_compliance: 0.25
+  intent_alignment: 0.15
+  dialogue_quality: 0.15
+  pacing: 0.15
+  canon_consistency: 0.30
+
+forbidden_words: []
+
+style_fingerprint:
+  avg_sentence_len: 0
+  exclamation_density: 0
+  dialogue_ratio: 0
+
+scene_keywords:
+  battle: []
+  politics: []
+  romance: []

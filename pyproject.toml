@@ -1,0 +1,26 @@
+[project]
+name = "storynexus-compress"
+version = "0.2.0"
+description = "文枢 StoryNexus 上下文压缩引擎独立包（SWA/CSA/HCA + 题材化事实提取 + 多语言）"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.13",
+    "tiktoken>=0.13",
+    "networkx>=3.6",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+bench = [
+    "fastembed>=0.3",
+]
+dev = [
+    "pytest>=9.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.setuptools.packages.find]
+include = ["app*"]

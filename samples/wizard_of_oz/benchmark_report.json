@@ -1,0 +1,117 @@
+{
+  "source": "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\wizard_of_oz\\wizard_of_oz.txt",
+  "generated_at": "2026-08-15 23:32:51",
+  "skill": "western",
+  "fact_profile": "western",
+  "stats": {
+    "total_chars": 208646,
+    "chars_no_space": 167534,
+    "total_tokens_measured": 51137,
+    "tokens_per_char": 0.3052,
+    "predicted_total_tokens_1p8": 301561,
+    "chapters": 24,
+    "avg_tokens_per_chapter": 2131
+  },
+  "swa": {
+    "budget_max_tokens": 32000,
+    "chapters_with_drop": 0,
+    "chapters_over_budget_alone": [],
+    "total_swa_tokens": 149323,
+    "avg_ms": 1.21,
+    "drops": []
+  },
+  "tier_b_simulation": {
+    "chapters_truncated_to_15k_chars": 24,
+    "swa_drop_with_15k_chapters": 2,
+    "total_swa_tokens_15k_chapters": 149323,
+    "avg_swa_per_chapter_15k": 6222
+  },
+  "csa": {
+    "total_facts": 0,
+    "total_csa_tokens": 783,
+    "avg_ms": 108.49,
+    "sentence_recall_hits": 115,
+    "foreshadow_injections": 0,
+    "hot_zone_chapters": 50
+  },
+  "fact_quality": {
+    "entities": 39,
+    "motifs": [],
+    "facts": 0,
+    "key_entities": [
+      "Dorothy",
+      "Scarecrow",
+      "Toto",
+      "Wizard"
+    ],
+    "key_entities_kept": true,
+    "non_entity_subjects": 0,
+    "garbage_fragments": 0,
+    "card_prior": {
+      "enabled": false,
+      "card_names": [],
+      "item_names": []
+    },
+    "note": "profile=western；实体/motif/卡先验；登场已移除"
+  },
+  "narrative": {
+    "foreshadows": 0,
+    "factions": 0,
+    "open_foreshadows": 0,
+    "outside_swa_foreshadows": 0
+  },
+  "hca": [
+    {
+      "scene": "battle",
+      "blocks": [],
+      "tokens": 11,
+      "ms": 0.07
+    },
+    {
+      "scene": "politics",
+      "blocks": [],
+      "tokens": 11,
+      "ms": 0.01
+    },
+    {
+      "scene": "romance",
+      "blocks": [],
+      "tokens": 11,
+      "ms": 0.0
+    }
+  ],
+  "one_million_window": {
+    "last_chapter": 24,
+    "last_chapter_tokens": 105,
+    "swa_1m_tokens": 2967,
+    "compressed_context_tokens": 3012,
+    "compress_ratio": 0.035,
+    "coverage_1m_compressed_chapters": 216,
+    "coverage_1m_raw_chapters": 9523,
+    "meaning": "1M 窗口可覆盖的章数（压缩 vs 原文）"
+  },
+  "coverage": {
+    "motif_coverage": [],
+    "echo_probe": [],
+    "relationship_retention": {
+      "character_pairs": 636,
+      "relation_facts": 0
+    },
+    "foreshadow_reachability": {
+      "open": 0,
+      "outside_swa": 0,
+      "injected_via_csa": 0
+    }
+  },
+  "budget_hit_rate": {
+    "swa_within_32k": 1.0,
+    "hca_within_2k": 1.0
+  },
+  "llm_facts": null,
+  "files": [
+    "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\wizard_of_oz\\compressed\\packet_ch001.json",
+    "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\wizard_of_oz\\compressed\\packet_ch002.json",
+    "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\wizard_of_oz\\compressed\\packet_ch003.json",
+    "D:\\Codes\\DivPoj2\\文枢StoryNexus\\samples\\wizard_of_oz\\compressed\\packet_ch024.json"
+  ]
+}

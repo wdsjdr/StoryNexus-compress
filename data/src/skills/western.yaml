@@ -1,0 +1,51 @@
+schema_version: "1.0"
+skill_id: "western"
+name: "西幻"
+description: "西方玄幻/奇幻：魔法、龙、骑士与王国——拉丁人名（Aragorn）与中文音译名（甘道夫·灰袍）双轨适配"
+fact_profile: "western"
+version: 1
+
+# 提示词插槽：题材增量约束（装配进 Dante 基础模板）
+writer_prompt: |
+  世界观元素（魔法/龙/精灵/王国）服从作品设定，禁止自行发明力量体系；
+  专有名词（人名/地名/器物名）全篇一致，不得改写译名；
+  魔法描写克制：一句施法动作接一句可见后果，避免特效堆砌；
+  对话风格贴合西方叙事语感，避免翻译腔（"哦，天哪！"式直译）。
+
+evaluator_criteria: |
+  canon_consistency 额外检查：魔法/科技力量不越界、译名前后一致、时间线（远征/旅程）无跳跃；
+  dialogue_quality 额外检查：是否出现翻译腔/网络流行语/东方语境词汇（打坐/内力/掌门）；
+  pacing 侧重：旅途与战斗的节奏起伏，避免连续无事件段落。
+
+patcher_style: |
+  修补必须保持译名与既有称呼完全一致，只改病句与越界描写；
+  保持西方叙事语感，禁止改写成东方式表达。
+
+# 题材曲率：世界观一致性权重略高
+weights:
+  fsm_compliance: 0.20
+  intent_alignment: 0.20
+  dialogue_quality: 0.20
+  pacing: 0.15
+  canon_consistency: 0.25
+
+# StyleLint 硬拦截词表（翻译腔/模板腔）
+forbidden_words:
+  - 哦，天哪
+  - 我的上帝
+  - 深深的吸了一口气
+  - 眼中闪过一丝
+  - 仿佛在诉说着
+  - 不禁陷入了沉思
+
+# 风格指纹（0 = 不约束）
+style_fingerprint:
+  avg_sentence_len: 0
+  exclamation_density: 0
+  dialogue_ratio: 0
+
+# 场景关键词（battle 走魔法/剑斗词汇）
+scene_keywords:
+  battle: [魔法, 咒语, 龙, 剑, 决斗, 军团, 围城, 远征, 讨伐, 龙息]
+  politics: [王国, 议会, 王座, 联姻, 贵族, 加冕, 谋反, 谈判]
+  romance: [重逢, 告白, 约定, 誓约, 心动, 守护]
